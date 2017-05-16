@@ -1,0 +1,1 @@
+# Put here global static variable if any.
