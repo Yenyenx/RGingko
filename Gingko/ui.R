@@ -7,27 +7,57 @@
 #    http://shiny.rstudio.com/
 #
 
+# list of dependencies
 library(shiny)
+library(shinydashboard)
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
-  
-  # Application title
-  titlePanel("Old Faithful Geyser Data"),
-  
-  # Sidebar with a slider input for number of bins 
-  sidebarLayout(
-    sidebarPanel(
-       sliderInput("bins",
-                   "Number of bins:",
-                   min = 1,
-                   max = 50,
-                   value = 30)
+################################################
+# sidebar
+sidebar <- dashboardSidebar(
+  sidebarMenu(
+    menuItem("Overview", 
+             tabName = "overview", 
+             icon = icon("dashboard")
     ),
     
-    # Show a plot of the generated distribution
-    mainPanel(
-       plotOutput("distPlot")
+    menuItem("Operations", 
+             tabName = "operations", 
+             icon = icon("table")
+    ),
+    
+    menuItem("Accounts", 
+             icon = icon("table"), 
+             tabName = "accounts"
+    ),
+    
+    menuItem("Parameters", 
+             icon = icon("cog", lib = "glyphicon"), 
+             tabName = "parameters"
     )
   )
-))
+)
+
+source('overview.TabContent.R')
+source('operations.TabContent.R')
+source('accounts.TabContent.R')
+
+body <- dashboardBody(
+  tags$head(
+    tags$link(rel = "stylesheet", type = "text/css", href = "custom.css")
+  ),
+  
+  tabItems(
+    overview.TabContent,
+    operations.TabContent,
+    accounts.TabContent
+  ) 
+)  
+
+#############################################################
+# Define UI for StreetLight
+shinyUI(
+  dashboardPage(skin = "green",
+                dashboardHeader(title = "Gingko"),
+                sidebar,
+                body)
+)
