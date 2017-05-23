@@ -10,6 +10,7 @@
 # list of dependencies
 library(shiny)
 library(shinydashboard)
+library(DT)
 
 ################################################
 # sidebar
@@ -40,6 +41,7 @@ sidebar <- dashboardSidebar(
 source('overview.TabContent.R')
 source('operations.TabContent.R')
 source('accounts.TabContent.R')
+source('parameters.TabContent.R')
 
 body <- dashboardBody(
   tags$head(
@@ -49,7 +51,8 @@ body <- dashboardBody(
   tabItems(
     overview.TabContent,
     operations.TabContent,
-    accounts.TabContent
+    accounts.TabContent,
+    parameters.TabContent
   ) 
 )  
 
