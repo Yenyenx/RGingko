@@ -60,7 +60,7 @@ body <- dashboardBody(
 # Define UI for StreetLight
 shinyUI(
   dashboardPage(skin = "green",
-                dashboardHeader(title = "Gingko"),
+                dashboardHeader(title = span(tagList(icon("bar-chart"), "Gingko"))),
                 sidebar,
                 body)
 )
