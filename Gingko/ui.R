@@ -13,6 +13,8 @@ library(shinydashboard)
 library(DT)
 library(rhandsontable)
 # devtools::install_github("jrowen/rhandsontable")
+# https://antoineguillot.wordpress.com/2017/03/01/three-r-shiny-tricks-to-make-your-shiny-app-shines-33-buttons-to-delete-edit-and-compare-datatable-rows/
+# https://github.com/AntoineGuillot2/ButtonsInDataTable
 library(formattable)
 library(sparkline)
 
@@ -34,8 +36,13 @@ sidebar <- dashboardSidebar(
     ),
     
     menuItem("Accounts", 
-             icon = icon("table"), 
-             tabName = "accounts"
+             tabName = "accounts",
+             icon = icon("table")
+    ),
+    
+    menuItem("Categories", 
+             tabName = "categories",
+             icon = icon("table")
     ),
     
     menuItem("Parameters", 
