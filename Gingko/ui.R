@@ -11,6 +11,13 @@
 library(shiny)
 library(shinydashboard)
 library(DT)
+library(rhandsontable)
+# devtools::install_github("jrowen/rhandsontable")
+library(formattable)
+library(sparkline)
+
+#library(shinytester)
+
 
 ################################################
 # sidebar
