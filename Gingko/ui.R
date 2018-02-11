@@ -8,6 +8,9 @@
 #
 
 # list of dependencies
+library(futile.logger)
+flog.threshold(INFO)
+
 library(shiny)
 library(shinydashboard)
 library(DT)
@@ -51,6 +54,9 @@ sidebar <- dashboardSidebar(
     )
   )
 )
+
+source('global.R')
+source('globalFunctions.R')
 
 source('overview.TabContent.R')
 source('operations.TabContent.R')
