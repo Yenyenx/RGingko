@@ -4,5 +4,24 @@ require(shiny)
 overview.PanelContent <- tabPanel(
   title = "Overview",  
   icon = icon("dashboard"),
-  "This panel is intentionally left blank"
+  
+  sidebarPanel(
+    width = 2,
+    
+    helpText("help text goes here"),
+    
+    dateInput("Overview.StartDate", 
+              "StartDate:", 
+              value = Sys.Date() - months(12)),
+    
+    dateInput("Overview.EndDate", 
+              "EndDate:", 
+              value = Sys.Date())
+    
+  ),
+  
+  mainPanel(
+    width = 10,
+    "This is left blank."
+  )
 )

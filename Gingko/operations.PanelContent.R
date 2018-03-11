@@ -1,5 +1,6 @@
 require(shiny)
 require(DT)
+require(lubridate)
 
 operations.PanelContent <- tabPanel(
   title = "Operations",  
@@ -10,22 +11,24 @@ operations.PanelContent <- tabPanel(
     
     helpText("help text goes here"),
     
-    dateInput("StartDate", 
+    dateInput("Operations.StartDate", 
               "StartDate:", 
-              value = "2012-01-01"),
+              value = Sys.Date() - months(12)),
     
-    dateInput("EndDate", 
+    dateInput("Operations.EndDate", 
               "EndDate:", 
-              value = "2015-01-01"),
+              value = Sys.Date()),
     
-    selectInput("SelectedAccount", 
+    selectInput("Operations.SelectedAccount", 
                 "Choose an account:", 
                 width = '100%',
                 list('CC ING TEST')
     ),
     
-    htmlOutput("SumOfOperations"),
-    htmlOutput("NumberOfOperations")
+    htmlOutput("Operations.NumberOfOperations"),
+    htmlOutput("Operations.SumOfOperations"),
+    htmlOutput("Operations.MaxOfOperations"),
+    htmlOutput("Operations.MinOfOperations")
     
   ),
   
@@ -33,7 +36,7 @@ operations.PanelContent <- tabPanel(
     width = 10,
     
     div(
-      DT::dataTableOutput("operationsTable"),
+      DT::dataTableOutput("Operations.Table"),
       style = "font-size:80%"
     )
   )

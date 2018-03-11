@@ -8,22 +8,53 @@
 #
 
 library(shiny)
+library(dplyr)
+library(tidyr)
+
+summary_iris <- group_by(iris, Species) %>% summarise(Count = n())
 
 # Define server logic required to draw a histogram
-shinyServer(function(input, output) {
+shinyServer(function(input, output, session) {
 
   # accounts table
   output$accountsTable <- renderTable(mtcars)
   
   # operations table
-  output$operationsTable <- renderDataTable({
+  # https://rstudio.github.io/DT/shiny.html
+  output$Operations.Table <- renderDataTable({
     datatable(
       mtcars,
-      options = list(pageLength = 50, lengthMenu = c(10, 25, 50, 100))
+      options = list(pageLength = 50, lengthMenu = c(10, 25, 50, 100)),
+      selection = 'single'
     )
   })
 
-  output$SumOfOperations <- renderUI({HTML("<b>Sum:</b> 200.00")})
-  output$NumberOfOperations <- renderUI({HTML("<b>Count:</b> 2")})
+  output$Operations.SumOfOperations <- renderUI({HTML("<b>Total:</b> 200.00")})
+  output$Operations.NumberOfOperations <- renderUI({HTML("<b>Count:</b> 2")})
+  output$Operations.MaxOfOperations <- renderUI({HTML("<b>Max:</b> 200.00")})
+  output$Operations.MinOfOperations <- renderUI({HTML("<b>Min:</b> 0.00")})
+  
+  # categories
+  output$Categories.List <- DT::renderDataTable(summary_iris)
+  
+  # subset the records to the row that was clicked
+  drilldata <- reactive({
+    shiny::validate(
+      need(length(input$summary_rows_selected) > 0, "Select rows to drill down!")
+    )
+    # subset the summary table and extract the column to subset on
+    # if you have more than one column, consider a merge instead
+    # NOTE: the selected row indices will be character type so they
+    #   must be converted to numeric or integer before subsetting
+    selected_species <- summary_iris[as.integer(input$summary_rows_selected), ]$Species
+    iris[iris$Species %in% selected_species, ]
+  })
+  
+  # display the subsetted data
+  output$Categories.SubCategories.List <- DT::renderDataTable(iris)
+  
+  # to allow killing the app once the browser is closed.
+  # helpful for dev session.
+  session$onSessionEnded(stopApp)
   
 })
