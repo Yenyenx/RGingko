@@ -1,6 +1,6 @@
 require(shiny)
 
-accounts.PanelContent <- tabPanel(
+accounts.MenuContent <- tabPanel(
   title = "Accounts",  
   icon = icon("table"),
   

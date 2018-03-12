@@ -1,7 +1,7 @@
 require(shiny)
-# require(shinydashboard)
+require(lubridate)
 
-overview.PanelContent <- tabPanel(
+overview.MenuContent <- tabPanel(
   title = "Overview",  
   icon = icon("dashboard"),
   
@@ -11,13 +11,12 @@ overview.PanelContent <- tabPanel(
     helpText("help text goes here"),
     
     dateInput("Overview.StartDate", 
-              "StartDate:", 
+              "Start date:", 
               value = Sys.Date() - months(12)),
     
     dateInput("Overview.EndDate", 
-              "EndDate:", 
+              "End date:", 
               value = Sys.Date())
-    
   ),
   
   mainPanel(

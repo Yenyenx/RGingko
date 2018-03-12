@@ -35,7 +35,9 @@ shinyServer(function(input, output, session) {
   output$Operations.MinOfOperations <- renderUI({HTML("<b>Min:</b> 0.00")})
   
   # categories
-  output$Categories.List <- DT::renderDataTable(summary_iris)
+  output$Categories.List <- DT::renderDataTable(summary_iris,
+                                                selection = list(mode = 'single', 
+                                                                 target = 'row'))
   
   # subset the records to the row that was clicked
   drilldata <- reactive({
@@ -51,7 +53,9 @@ shinyServer(function(input, output, session) {
   })
   
   # display the subsetted data
-  output$Categories.SubCategories.List <- DT::renderDataTable(iris)
+  output$Categories.SubCategories.List <- DT::renderDataTable(iris,
+                                                              selection = list(mode = 'single', 
+                                                                               target = 'row'))
   
   # to allow killing the app once the browser is closed.
   # helpful for dev session.

@@ -44,12 +44,12 @@ shinyUI(
         theme = shinytheme("cerulean"),  # <--- To use a theme, uncomment this
         "Gingko",
         windowTitle = "Gingko",
-        overview.PanelContent,
-        operations.PanelContent,
-        accounts.PanelContent,
-        categories.PanelContent,
-        labels.PanelContent,
-        preferences.PanelContent
+        overview.MenuContent,
+        operations.MenuContent,
+        accounts.MenuContent,
+        categories.MenuContent,
+        labels.MenuContent,
+        preferences.MenuContent
       )
     )
 )

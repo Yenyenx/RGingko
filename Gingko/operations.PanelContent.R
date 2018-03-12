@@ -2,7 +2,7 @@ require(shiny)
 require(DT)
 require(lubridate)
 
-operations.PanelContent <- tabPanel(
+operations.MenuContent <- tabPanel(
   title = "Operations",  
   icon = icon("line-chart"),
   
@@ -12,11 +12,11 @@ operations.PanelContent <- tabPanel(
     helpText("help text goes here"),
     
     dateInput("Operations.StartDate", 
-              "StartDate:", 
+              "Start date:", 
               value = Sys.Date() - months(12)),
     
     dateInput("Operations.EndDate", 
-              "EndDate:", 
+              "End date:", 
               value = Sys.Date()),
     
     selectInput("Operations.SelectedAccount", 
