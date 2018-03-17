@@ -14,6 +14,7 @@ flog.threshold(INFO)
 library(shiny)
 #library(shinydashboard)
 library(shinythemes)
+library(shinyBS)
 
 library(DT)
 library(rhandsontable)
