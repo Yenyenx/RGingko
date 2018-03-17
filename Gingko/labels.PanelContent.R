@@ -1,19 +1,38 @@
 require(shiny)
 
 labelsList.PanelContent <- tabPanel(
-  title = "Label list",  
+  title = "Label list",
   icon = icon("table"),
   "This panel is intentionally left blank for label list"
 )
 
 newLabel.PanelContent <- tabPanel(
-  title = "Create new label...",  
+  title = "New label...",
   icon = icon("plus", lib = "glyphicon"),
-  "This panel is intentionally left blank to create new label"
+  
+  helpText("help text goes here"),
+  
+  textInput(
+    "newLabel.Name",
+    label = "Label name:",
+    value = "my label",
+    width = "100%"
+  ),
+  
+  textAreaInput(
+    "newLabel.Description",
+    label = "Description:",
+    value = "blablabla",
+    width = "80%",
+    resize = "both"
+  ),
+  
+  bsButton("newLabel.Create", 
+           label = "Create new Label",
+           style = "warning")
+  
 )
 
-labels.MenuContent <- navbarMenu(
-  "Labels",
-  labelsList.PanelContent,
-  newLabel.PanelContent
-)
+labels.MenuContent <- navbarMenu("Labels",
+                                 labelsList.PanelContent,
+                                 newLabel.PanelContent)

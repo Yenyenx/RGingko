@@ -17,7 +17,7 @@ summary_iris <- group_by(iris, Species) %>% summarise(Count = n())
 shinyServer(function(input, output, session) {
 
   # accounts table
-  output$accountsTable <- renderTable(mtcars)
+  output$accounts.GlobalTable <- renderTable(mtcars)
   
   # operations table
   # https://rstudio.github.io/DT/shiny.html
