@@ -10,6 +10,7 @@
 library(shiny)
 library(dplyr)
 library(tidyr)
+library(DT)
 
 summary_iris <- group_by(iris, Species) %>% summarise(Count = n())
 
@@ -24,7 +25,14 @@ shinyServer(function(input, output, session) {
   output$Operations.Table <- renderDataTable({
     datatable(
       mtcars,
-      options = list(pageLength = 50, lengthMenu = c(10, 25, 50, 100)),
+      extensions = c('Buttons','FixedHeader'),
+      options = list(pageLength = 50, 
+                     lengthMenu = list(c(25, 50, 100, -1), c(25, 50, 100, 'All')),
+                     dom = "Blfrtip",
+                     buttons = c('copy'),
+                     focus = 'click',
+                     fixedHeader = TRUE
+                     ),
       selection = 'single'
     )
   })
