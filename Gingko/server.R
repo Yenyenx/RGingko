@@ -16,7 +16,7 @@ summary_iris <- group_by(iris, Species) %>% summarise(Count = n())
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output, session) {
-
+  
   # accounts table
   output$accounts.GlobalTable <- renderTable(mtcars)
   
@@ -31,12 +31,26 @@ shinyServer(function(input, output, session) {
                      dom = "Blfrtip",
                      buttons = c('copy'),
                      focus = 'click',
-                     fixedHeader = TRUE
-                     ),
+                     fixedHeader = TRUE,
+                     rowCallback = DT::JS(
+                       'function(row, data) {
+                       // Bold cells for those >= 19 in the first column
+                       if (parseFloat(data[1]) > 19.0) {
+                       $("td:eq(1)", row).css("color", "tomato");
+                       $("td:eq(1)", row).css("font-weight", "bold");
+                       }
+                       if (parseFloat(data[1]) < 19.0) {
+                       $("td:eq(1)", row).css("color", "MediumSeaGreen");
+                       $("td:eq(1)", row).css("font-weight", "bold");
+                       }
+
+                       }'
+                     )
+      ),
       selection = 'single'
     )
   })
-
+  
   output$Operations.SumOfOperations <- renderUI({HTML("<b>Total:</b> 200.00")})
   output$Operations.NumberOfOperations <- renderUI({HTML("<b>Count:</b> 2")})
   output$Operations.MaxOfOperations <- renderUI({HTML("<b>Max:</b> 200.00")})
