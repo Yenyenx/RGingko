@@ -20,7 +20,7 @@ accounts.MenuContent <- tabPanel(
         "Accounts",
         
         div(
-          tableOutput("accountsTable"),
+          tableOutput("accounts.GlobalTable"),
           style = "font-size:80%"
         )
         
