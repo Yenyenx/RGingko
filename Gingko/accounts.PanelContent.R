@@ -28,6 +28,7 @@ accounts.MenuContent <- tabPanel(
       
       tabPanel(
         "New Account",
+        br(),
         
         checkboxInput("newAccount.IsAnalytical",
                       label = "Is analytical ?",
@@ -61,7 +62,22 @@ accounts.MenuContent <- tabPanel(
       ), # end of New Account
       
       tabPanel(
+        "Bank Agencies",
+        br(),
+        div(
+          DT::dataTableOutput("agencies.GlobalTable"),
+          style = "font-size:80%"
+        ),
+        
+        br(),
+        bsButton("agencies.Delete", 
+                 label = "Delete selected agencies",
+                 style = "warning")
+      ), # end of Bank agencies
+      
+      tabPanel(
         "New Bank Agency",
+        br(),
         
         textInput("newAgency.Bank",
                   label = "Bank name:",

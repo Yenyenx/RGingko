@@ -1,0 +1,6 @@
+Key,Bank,BankId,AgencyName,GuichetCode
+0-0,my bank,0,my Agency,0
+0-1,my bank,0,my Agency,1
+0-5,my bank,0,my Agency,5
+0-10,my bank,0,my Agency,10
+0-12,my bank,0,my Agency,12

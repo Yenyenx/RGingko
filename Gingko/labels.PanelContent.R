@@ -9,6 +9,7 @@ labelsList.PanelContent <- tabPanel(
 newLabel.PanelContent <- tabPanel(
   title = "New label...",
   icon = icon("plus", lib = "glyphicon"),
+  width = 12,
   
   helpText("help text goes here"),
   
@@ -22,9 +23,9 @@ newLabel.PanelContent <- tabPanel(
   textAreaInput(
     "newLabel.Description",
     label = "Description:",
-    value = "blablabla",
-    width = "80%",
-    resize = "both"
+    value = "Enter here the description of the label",
+    width = "100%",
+    resize = "vertical"
   ),
   
   bsButton("newLabel.Create", 
